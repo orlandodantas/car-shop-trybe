@@ -83,6 +83,7 @@ export default class CarService implements ICarService {
 
   private static validateData(entity: Car): void {
     const schema = Joi.object({
+      _id: Joi.string(),
       model: Joi.string().min(3).required(),
       year: Joi.number().min(1900).max(2022).required(),
       color: Joi.string().min(3).required(),
@@ -95,6 +96,8 @@ export default class CarService implements ICarService {
     });
 
     const { error } = schema.validate(entity);
+
+    console.log(error);
 
     if (error) throw HttpErrors.BadRequest(error.message);
   }
