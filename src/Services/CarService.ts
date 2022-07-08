@@ -4,7 +4,7 @@ import { ICarModel } from '../interfaces/ICarModel';
 import { ICarService } from '../interfaces/ICarService';
 import HttpErrors from '../utils/HttpErrors';
 
-// const ITEM_NOTFOUND = 'Item não encontrado';
+const ITEM_NOTFOUND = 'Object not found';
 
 export default class CarService implements ICarService {
   private _carModel: ICarModel;
@@ -28,10 +28,6 @@ export default class CarService implements ICarService {
   public async read(): Promise<Car[]> {
     const entityData = await this._carModel.read();
 
-    // if (!entityData || entityData.length === 0) {
-    //   throw HttpErrors.NotFound('Nenhum item encontrado');
-    // }
-
     return entityData;
   }
 
@@ -40,9 +36,9 @@ export default class CarService implements ICarService {
     
     const entityData = await this._carModel.readOne(id);
 
-    // if (!entityData || Object.keys(entityData).length === 0) {
-    //   HttpErrors.NotFound(ITEM_NOTFOUND);
-    // }
+    if (!entityData) {
+      throw HttpErrors.NotFound(ITEM_NOTFOUND);
+    }
 
     return entityData;
   }
@@ -53,20 +49,20 @@ export default class CarService implements ICarService {
 
     const entityData = await this._carModel.update(id, entity);
 
-    // if (!entityData || Object.keys(entityData).length === 0) {
-    //   HttpErrors.NotFound(ITEM_NOTFOUND);
-    // }
+    if (!entityData) {
+      throw HttpErrors.NotFound(ITEM_NOTFOUND);
+    }
 
     return entityData;
   }
 
   public async delete(id: string): Promise<void> {
     CarService.verifyIdLength(id);
-    await this._carModel.delete(id);
+    const entityData = await this._carModel.delete(id);
 
-    // if (!entityData || Object.keys(entityData).length === 0) {
-    //   HttpErrors.NotFound(ITEM_NOTFOUND);
-    // }
+    if (!entityData) {
+      throw HttpErrors.NotFound(ITEM_NOTFOUND);
+    }
   }
 
   public async readByModel(model: string): Promise<Car[] | null> {
@@ -74,9 +70,9 @@ export default class CarService implements ICarService {
 
     const entityData = await this._carModel.readByModel(model);
 
-    // if (!entityData || Object.keys(entityData).length === 0) {
-    //   HttpErrors.NotFound(ITEM_NOTFOUND);
-    // }
+    if (!entityData) {
+      throw HttpErrors.NotFound(ITEM_NOTFOUND);
+    }
 
     return entityData;
   }
@@ -97,15 +93,11 @@ export default class CarService implements ICarService {
 
     const { error } = schema.validate(entity);
 
-    console.log(error);
-
     if (error) throw HttpErrors.BadRequest(error.message);
   }
 
   private static verifyIdLength(id: string): void {
     const idLength = id.length;
-
-    console.log('Id Length: ', idLength);
 
     if (idLength < 24) {
       throw HttpErrors.BadRequest('Id must have 24 hexadecimal characters');

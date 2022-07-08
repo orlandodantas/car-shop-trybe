@@ -18,19 +18,6 @@ export default class CarController implements ICarController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    /* const { status, model, year, color, buyValue, doorsQty, seatsQty } = req
-      .body;
-    */
-    /* const entityData = await this._carService.create({
-      status,
-      model,
-      year,
-      color,
-      buyValue,
-      doorsQty,
-      seatsQty,
-    }); */
-
     const entityData = await this._carService.create(req.body);
 
     return res.status(StatusCodes.CREATED).json(entityData);
@@ -51,19 +38,7 @@ export default class CarController implements ICarController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    /* const { status, model, year, color, buyValue, doorsQty, seatsQty } = req
-      .body; */
     const { id } = req.params;
-
-    /* const entityData = await this._carService.update(id, {
-      status,
-      model,
-      year,
-      color,
-      buyValue,
-      doorsQty,
-      seatsQty,
-    }); */
 
     const entityData = await this._carService.update(id, req.body);
 

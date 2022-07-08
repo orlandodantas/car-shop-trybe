@@ -1,8 +1,5 @@
 import { isValidObjectId, Model } from 'mongoose';
 import { Model as ModelGeneric } from '../interfaces/ModelInterface';
-import HttpErrors from '../utils/HttpErrors';
-
-const ID_MONGO_INVALID = 'Object not found';
 
 export default class GenericModel<T> implements ModelGeneric<T> {
   protected _modelMongoose: Model<T>;
@@ -24,11 +21,7 @@ export default class GenericModel<T> implements ModelGeneric<T> {
   }
 
   public async readOne(id: string): Promise<T | null> {
-    if (!isValidObjectId(id)) {
-      throw HttpErrors.NotFound(ID_MONGO_INVALID);
-    }
-
-    console.log(isValidObjectId(id), id);
+    if (!isValidObjectId(id)) return null;
 
     const entityData = await this._modelMongoose.findById(id);
 
@@ -36,26 +29,19 @@ export default class GenericModel<T> implements ModelGeneric<T> {
   }
 
   public async update(id: string, entity: T): Promise<T | null> {
-    if (!isValidObjectId(id)) {
-      throw HttpErrors.NotFound(ID_MONGO_INVALID);
-    }
-
-    console.log('ID model: ', id);
+    if (!isValidObjectId(id)) return null;
 
     const entityData = await this._modelMongoose
       .findOneAndUpdate({ _id: id }, entity, { returnOriginal: false });
 
-    console.log('retorned id: ', entityData?.id);
     return entityData;
   }
 
   public async delete(id: string): Promise<T | null> {
-    if (!isValidObjectId(id)) {
-      throw HttpErrors.NotFound(ID_MONGO_INVALID);
-    }
+    if (!isValidObjectId(id)) return null;
 
-    await this._modelMongoose.deleteOne({ _id: id });
+    const entityData = await this._modelMongoose.findByIdAndDelete({ _id: id });
 
-    return null;
+    return entityData;
   }
 }
