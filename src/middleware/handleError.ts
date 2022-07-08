@@ -7,8 +7,6 @@ const handleError = (
   err: CustomError,
   _req: Request,
   res: Response,
-  // Perguntar no slack o que devo fazer sobre isto, desabilitando somente para não atrapalhar, mas irei resolver
-  
   _next: NextFunction,
 ): Response => {
   if (err.statusCode) {
@@ -20,8 +18,6 @@ const handleError = (
   return res
     .status(StatusCodes.SERVER_ERROR)
     .json({ error: 'Erro interno no servidor' });
-
-  _next();
 };
 
 export default handleError;
