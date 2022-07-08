@@ -102,6 +102,8 @@ export default class CarService implements ICarService {
   private static verifyIdLength(id: string): void {
     const idLength = id.length;
 
+    console.log('Id Length: ', idLength);
+
     if (idLength < 24) {
       throw HttpErrors.BadRequest('Id must have 24 hexadecimal characters');
     }
