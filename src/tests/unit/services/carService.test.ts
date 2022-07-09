@@ -3,7 +3,7 @@ import sinon, { SinonStub } from 'sinon';
 import { CustomError } from '../../../interfaces/CustomError';
 // import mongoose from 'mongoose';
 import CarModel from '../../../models/CarModel';
-import CarService from '../../../Services/CarService';
+import CarService from '../../../services/CarService';
 import { carMock, carMockBadRequest, carMockCreated, carMockUpdate, carMockUpdated, ID_ITEM_NOTFOUND, ID_MONGO, ID_MONGO_INVALID } from '../mocks/mockCarModel';
 
 describe('CarService', () => {

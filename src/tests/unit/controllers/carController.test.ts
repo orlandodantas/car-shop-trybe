@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { Request, Response } from 'express';
 import sinon, { SinonStub } from 'sinon';
 import CarController from '../../../controllers/CarController';
-import CarService from '../../../Services/CarService';
+import CarService from '../../../services/CarService';
 import { carMock, carMockCreated, carMockUpdate, carMockUpdated, ID_MONGO } from '../mocks/mockCarModel';
 
 describe('CarController', () => {

@@ -2,7 +2,7 @@ import CarController from '../controllers/CarController';
 import ICarController from '../interfaces/ICarController';
 import CarModel from '../models/CarModel';
 import CarMongooseModel from '../models/schemas/CarSchema';
-import CarService from '../Services/CarService';
+import CarService from '../services/CarService';
 
 export default class CarFactory {
   public static create(): ICarController {
