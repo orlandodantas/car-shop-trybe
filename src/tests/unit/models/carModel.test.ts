@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import sinon, { SinonStub } from 'sinon';
 import CarModel from '../../../models/CarModel';
 import CarMongooseModel from '../../../models/schemas/CarSchema';
-import { carMock, carMockCreated, carMockUpdate, carMockUpdated, ID_MONGO, ID_MONGO_INVALID } from './mockCarModel';
+import { carMock, carMockCreated, carMockUpdate, carMockUpdated, ID_MONGO, ID_MONGO_INVALID } from '../mocks/mockCarModel';
 
 describe('CarModel', () => {
   describe('Create', () => {
