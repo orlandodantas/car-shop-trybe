@@ -14,10 +14,6 @@ export default class CarService implements ICarService {
   }
 
   public async create(entity: Car): Promise<Car> {
-    if (!entity || Object.keys(entity).length === 0) {
-      throw HttpErrors.BadRequest('O objeto não pode está vazio');
-    }
-
     CarService.validateData(entity);
 
     const entityData = await this._carModel.create(entity);
