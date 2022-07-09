@@ -155,7 +155,7 @@ describe('CarService', () => {
 
   describe('Delete', () => {
 
-    it('Success', async () => {
+    /* it('Success', async () => {
       sinon.stub(CarModel.prototype, 'delete').resolves(carMockCreated);
       
       const carService = new CarService(CarModel.prototype);
@@ -164,6 +164,18 @@ describe('CarService', () => {
       expect(spy('ID_MONGO')).to.be.ok;
 
       // Credits: https://stackoverflow.com/questions/67217406/unit-test-a-typescript-void-function-with-sinon
+      (CarModel.prototype.delete as SinonStub).restore();
+    }); */
+
+    it('Success', async () => {
+      sinon.stub(CarModel.prototype, 'delete').resolves(carMockCreated);
+      
+      const carService = new CarService(CarModel.prototype);
+
+      const carDeleted = await carService.delete(ID_MONGO);
+
+      expect(carDeleted).to.be.equal(undefined);
+      
       (CarModel.prototype.delete as SinonStub).restore();
     });
 
