@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import connectToDatabase from './connection';
 import handleError from './middleware/handleError';
 import CarRouter from './routes/carRouter';
+import MotorcycleRouter from './routes/MotorcycleRouter';
 
 class App {
   public app: express.Application;
@@ -26,6 +27,7 @@ class App {
 
   private startRouter() {
     this.app.use('/cars', CarRouter);
+    this.app.use('/motorcycles', MotorcycleRouter);
 
     this.app.use(handleError);
   }
