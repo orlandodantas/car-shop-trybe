@@ -47,7 +47,7 @@
 
 :heavy_check_mark: Cadastro de motocicleta.  
 
-:heavy_check_mark: Buscar todos as motocicletas.
+:heavy_check_mark: Buscar todas as motocicletas.
 
 :heavy_check_mark: Buscar motocicleta por ID.  
 
