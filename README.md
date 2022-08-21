@@ -134,4 +134,4 @@ npm run test:coverage
 
 The [MIT License]() (MIT)
 
-Copyright :copyright: 2022 - ToDo List API
+Copyright :copyright: 2022 - Car Shop
