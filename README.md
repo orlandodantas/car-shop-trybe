@@ -120,7 +120,7 @@ Rodar a execução do teste coverage:
 npm run test:coverage
 ```
 
-## Linguagens, dependencias e libs utilizadas :books:
+## Linguagens, dependências e libs utilizadas :books:
 
 - [Node](https://nodejs.org/en/download/)
 - [TypeScript](https://www.typescriptlang.org/)
